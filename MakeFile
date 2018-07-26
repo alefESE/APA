@@ -1,0 +1,18 @@
+ifeq ($(OS),Windows_NT)
+	RM = del *.o Ordena.exe
+else
+	RM = rm -f *.o Ordena
+endif
+
+all: Swap SelectionSort InsertionSort Main
+		gcc -o Ordena Swap.o SelectionSort.o InsertionSort.o Main.o
+Swap: Swap.c
+		gcc -Wall -c Swap.c -o Swap.o
+SelectionSort: SelectionSort.c Swap.h
+		gcc -Wall -c SelectionSort.c -o SelectionSort.o
+InsertionSort: InsertionSort.c Swap.h
+		gcc -Wall -c InsertionSort.c -o InsertionSort.o
+Main: main.c SelectionSort.h InsertionSort.h
+		gcc -Wall -c main.c -o Main.o
+clean:
+		$(RM)
