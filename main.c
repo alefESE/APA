@@ -3,7 +3,7 @@
 #ifdef _WIN32
 #include <windows.h>
 #include <winbase.h>
-#elif __LINUX__
+#elif defined(__LINUX__) || (defined(__APPLE__) && defined(__MACH__))
 #include <time.h>
 #endif
 #include <stdio.h>
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
     tempo = ((double)li.QuadPart-ini)/freq;
     printf("Tempo do SelectionSort: %.20f ms\n", tempo);
 
-#elif __LINUX__
+#elif defined(__LINUX__) || (defined(__APPLE__) && defined(__MACH__))
     clock_t ini, fim;
     ini = clock();
     insertionSort(a, n);
