@@ -4,15 +4,23 @@ else
 	RM = rm -f *.o Ordena
 endif
 
-all: Swap SelectionSort InsertionSort Main
-		gcc -o Ordena Swap.o SelectionSort.o InsertionSort.o Main.o
+all: Swap SelectionSort InsertionSort MergeSort QuickSort CountingSort HeapSort Main
+		gcc -o Ordena Swap.o SelectionSort.o InsertionSort.o MergeSort.o QuickSort.o CountingSort.o HeapSort.o Main.o
 Swap: Swap.c
 		gcc -Wall -c Swap.c -o Swap.o
 SelectionSort: SelectionSort.c Swap.h
 		gcc -Wall -c SelectionSort.c -o SelectionSort.o
 InsertionSort: InsertionSort.c Swap.h
 		gcc -Wall -c InsertionSort.c -o InsertionSort.o
-Main: main.c SelectionSort.h InsertionSort.h
+QuickSort: QuickSort.c Swap.h
+		gcc -Wall -c QuickSort.c -o QuickSort.o
+MergeSort: MergeSort.c
+		gcc -Wall -c MergeSort.c -o MergeSort.o
+HeapSort: HeapSort.c Swap.h
+		gcc -Wall -c HeapSort.c -o HeapSort.o
+CountingSort: CountingSort.c
+		gcc -Wall -c CountingSort.c -o CountingSort.o
+Main: main.c SelectionSort.h InsertionSort.h MergeSort.h QuickSort.h
 		gcc -Wall -c main.c -o Main.o
 clean:
 		$(RM)
